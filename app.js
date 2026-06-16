@@ -1,25 +1,15 @@
-const express = require("express")
+const express = require("express");
+const authRoutes = require("./src/controllers/routes/auth.routes");
+const userRoutes = require("./src/controllers/routes/user.routes");
 
+const app = express();
 
-const app = express ()
+app.use(express.json());
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 
-const users =[];
+app.get("/", (req, res) => {
+  res.send("API is working");
+});
 
-app.post("/register",(req,res)=>{
-  const {name,email,password} = req.body;
-
-  const user = {
-    name,
-    email,
-    password,
-  };
-  Users.push(user);
-  res.status(201).json({
-    message:"User registered successfully"
-  })
-})
-
-app.use(express.json())
-app.get('/',(req,res)=>{
-  res.send("API is working")
-})
+module.exports = app;
