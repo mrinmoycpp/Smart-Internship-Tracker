@@ -1,11 +1,11 @@
-const pool = require("../config/db");
+const pool = require("../../config/db");
 
 const createInternship = async (userId, data) => {
   const {
     title,
     company,
     startDate,
-    endDate,
+    endDate,  
     description,
     status = "open",
   } = data;
