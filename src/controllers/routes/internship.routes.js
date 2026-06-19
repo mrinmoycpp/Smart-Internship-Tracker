@@ -4,6 +4,7 @@ const {
   createInternship,
   getInternships,
   getInternshipById,
+  getSavedInternships,
   updateInternship,
   deleteInternship,
 } = require("../internship.controller");
@@ -15,6 +16,7 @@ const {
 const router = express.Router();
 
 router.get("/", authMiddleware, getInternships);
+router.get("/saved", authMiddleware, getSavedInternships);
 router.get("/:id", authMiddleware, getInternshipById);
 router.post("/", authMiddleware, validateInternship, createInternship);
 router.put("/:id", authMiddleware, validateInternshipUpdate, updateInternship);

@@ -1,6 +1,7 @@
 const dotenv = require("dotenv");
 dotenv.config();
-const pool = require("./src/config/db"); // adjust path if needed
+const pool = require("./src/config/db"); // adjust path if needed\
+
 
 async function testDB() {
   try {

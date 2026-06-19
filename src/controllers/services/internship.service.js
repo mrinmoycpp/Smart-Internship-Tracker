@@ -70,10 +70,23 @@ const deleteInternship = async (userId, internshipId) => {
   return result.rowCount > 0;
 };
 
+const getSavedInternshipsByUser = async (userId) => {
+  const result = await pool.query(
+    `SELECT i.* FROM internships i
+     JOIN saved_internships s ON s.internship_id = i.id
+     WHERE s.user_id = $1
+     ORDER BY s.created_at DESC`,
+    [userId]
+  );
+
+  return result.rows;
+};
+
 module.exports = {
   createInternship,
   getInternshipsByUser,
   getInternshipById,
   updateInternship,
   deleteInternship,
+  getSavedInternshipsByUser,
 };

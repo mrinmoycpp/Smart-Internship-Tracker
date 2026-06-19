@@ -44,6 +44,18 @@ const getInternshipById = async (req, res) => {
   }
 };
 
+const getSavedInternships = async (req, res) => {
+  try {
+    const userId = req.user?.id;
+    const savedInternships = await internshipService.getSavedInternshipsByUser(userId);
+
+    return res.json({ savedInternships });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
+
 const updateInternship = async (req, res) => {
   try {
     const userId = req.user?.id;
@@ -87,4 +99,5 @@ module.exports = {
   getInternshipById,
   updateInternship,
   deleteInternship,
+  getSavedInternships,
 };
